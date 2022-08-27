@@ -10,7 +10,7 @@
       "type": "extensionHost",
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "outFiles": ["${workspaceFolder}/out/client/*.js"],
       "preLaunchTask": "${defaultBuildTask}"
     },
     {
@@ -19,7 +19,7 @@
       "name": "attach to server",
       "port": 6010,
       "restart": true,
-      "outFiles": ["${workspaceFolder}/out/**/*.js", "!**/node_modules/**"]
+      "outFiles": ["${workspaceFolder}/out/server/*.js", "!**/node_modules/**"]
     },
     {
       "name": "Extension Tests",
@@ -36,7 +36,7 @@
   "compounds": [
     {
       "name": "client + server",
-      "configurations": ["Run Extension", "attach to server"]
+      "configurations": ["attach to server", "Run Extension"]
     }
   ]
 }

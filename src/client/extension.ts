@@ -29,7 +29,7 @@ function createClient(
       module: serverModule,
       transport: TransportKind.ipc,
       options: {
-        execArgv: ['--nolazy', '--inspect=6010'],
+        execArgv: ['--nolazy', '--inspect-brk=6010'],
       },
     },
   };
