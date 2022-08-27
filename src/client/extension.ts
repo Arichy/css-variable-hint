@@ -72,7 +72,11 @@ function createClient(
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  if (!vscode.workspace.workspaceFolders[0]) {
+  if (
+    !vscode.workspace ||
+    !vscode.workspace.workspaceFolders ||
+    !vscode.workspace.workspaceFolders[0]
+  ) {
     return;
   }
 
@@ -83,6 +87,23 @@ export function activate(context: vscode.ExtensionContext) {
   client = createClient(context, lookupFiles);
 
   client.start();
+
+  const restartServerComd = vscode.commands.registerCommand(
+    'css-variable-hint.restartServer',
+    () => {
+      client.stop();
+
+      const config = vscode.workspace.getConfiguration(configurationKey);
+      const lookupFiles =
+        (config.get('lookupFiles') as string[]) || defaultConfig.lookupFiles;
+
+      client = createClient(context, lookupFiles);
+
+      client.start();
+    }
+  );
+
+  context.subscriptions.push(restartServerComd);
 }
 
 export function deactivate(): Thenable<void> | undefined {
