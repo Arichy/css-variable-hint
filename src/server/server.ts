@@ -26,7 +26,10 @@ import {
   Rule,
   Declaration,
   Position as PostcssPosition,
+  Root,
 } from 'postcss';
+import { parse as parseScss } from 'postcss-scss';
+import { parse as parseLess } from 'postcss-less';
 import {
   uriToFilePath,
   filePathToUri,
@@ -159,11 +162,33 @@ function generateCompletionItems() {
   completionItems = result;
 }
 
+function getAst(cssFilePath: string): Root | undefined {
+  const content = fs.readFileSync(cssFilePath, 'utf-8');
+  const extname = path.extname(cssFilePath);
+
+  try {
+    switch (extname) {
+      case '.scss':
+        return parseScss(content, { from: cssFilePath });
+      case '.less':
+        return parseLess(content, { from: cssFilePath }) as Root;
+      default:
+        return parse(content, { from: cssFilePath });
+    }
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
+}
+
 function handleCssFileCreated(cssFilePath: string) {
   fileMap.set(cssFilePath, []);
 
-  const content = fs.readFileSync(cssFilePath, 'utf-8');
-  const ast = parse(content, { from: cssFilePath });
+  const ast = getAst(cssFilePath);
+
+  if (!ast) {
+    return;
+  }
 
   ast.walkDecls((decl) => {
     if (!decl.variable) {
@@ -191,8 +216,11 @@ function handleCssFileChanged(cssFilePath: string) {
   fileMap.delete(cssFilePath);
   fileMap.set(cssFilePath, []);
 
-  const content = fs.readFileSync(cssFilePath, 'utf-8');
-  const ast = parse(content, { from: cssFilePath });
+  const ast = getAst(cssFilePath);
+
+  if (!ast) {
+    return;
+  }
 
   const visitedVariableNames = new Set<string>();
 
