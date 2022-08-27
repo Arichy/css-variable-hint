@@ -1,12 +1,16 @@
-# css-variable-hint README
+# css-variable-hint
 
 ## Features
 
 Add some css variables language features for `.css`, `.scss` files:
 
 - CSS variable completion
-- CSS variable goto definition
+![alt command](https://github.com/Arichy/css-variable-hint/raw/main/resources/markdown/completion.gif)
 
+- CSS variable goto definition
+![alt command](https://github.com/Arichy/css-variable-hint/raw/main/resources/markdown/definition.gif)
+
+---
 ## Advantages compared with other similar extensions:
 - **Support multiple variables**: It's very common that we need to declare one css variable with multiple values. For example, to support `dark mode`, we often declare a color variable in `html`, and declare the same color variable in `html[data-theme=dark]` with another value. This extension will display all values for every variable to let you choose freely.
 
