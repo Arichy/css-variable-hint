@@ -7,7 +7,6 @@ import {
   ServerOptions,
   TransportKind,
 } from 'vscode-languageclient/node';
-import defaultConfig from '../defaultConfig';
 
 let client: LanguageClient;
 
@@ -81,8 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   const config = vscode.workspace.getConfiguration(configurationKey);
-  const lookupFiles =
-    (config.get('lookupFiles') as string[]) || defaultConfig.lookupFiles;
+  const lookupFiles = config.get('lookupFiles') as string[];
 
   client = createClient(context, lookupFiles);
 
@@ -94,8 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
       client.stop();
 
       const config = vscode.workspace.getConfiguration(configurationKey);
-      const lookupFiles =
-        (config.get('lookupFiles') as string[]) || defaultConfig.lookupFiles;
+      const lookupFiles = config.get('lookupFiles') as string[];
 
       client = createClient(context, lookupFiles);
 

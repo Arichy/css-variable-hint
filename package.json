@@ -25,12 +25,7 @@
         "cssVariableHint.lookupFiles": {
           "type": "array",
           "description": "Glob for css files which contain css variables",
-          "default": [
-            "{,!(node_modules)/**/}*.css",
-            "{,!(node_modules)/**/}*.sass",
-            "{,!(node_modules)/**/}*.scss",
-            "{,!(node_modules)/**/}*.less"
-          ]
+          "default": []
         }
       }
     },
@@ -53,6 +48,7 @@
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "16.x",
+    "@types/postcss-less": "^4.0.2",
     "@types/vscode": "^1.70.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
@@ -65,6 +61,7 @@
   "dependencies": {
     "fast-glob": "^3.2.11",
     "postcss": "^8.4.16",
+    "postcss-less": "^6.0.0",
     "postcss-scss": "^4.0.4",
     "vscode-css-languageservice": "^6.0.1",
     "vscode-languageclient": "^8.0.2",
