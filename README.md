@@ -15,6 +15,7 @@ Add some css variables language features for `.css`, `.scss` files:
 - **Support multiple variables**: It's very common that we need to declare one css variable with multiple values. For example, to support `dark mode`, we often declare a color variable in `html`, and declare the same color variable in `html[data-theme=dark]` with another value. This extension will display all values for every variable to let you choose freely.
 
 - **Source tree display**: One variable may have multiple values, so this extension will display every value with its source to let you recognize which one is what you need.
+![alt command](https://github.com/Arichy/css-variable-hint/raw/main/resources/markdown/multiple-sourcetree.png)
 
 - **Hot-reload**: File changes outside `node_modules` can be watched to update the completion items.
 
