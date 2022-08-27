@@ -1,7 +1,7 @@
 {
   "name": "css-variable-hint",
   "displayName": "css-variable-hint",
-  "description": "",
+  "description": "Completion and goto definition for css variables.",
   "version": "1.1.1",
   "engines": {
     "vscode": "^1.70.0"
