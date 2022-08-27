@@ -2,7 +2,7 @@
   "name": "css-variable-hint",
   "displayName": "css-variable-hint",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -12,6 +12,11 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "icon": "resources/logo.png",
+  "publisher": "arichy",
+  "repository": {
+    "url": "https://github.com/Arichy/css-variable-hint"
+  },
   "main": "./out/client/extension.js",
   "contributes": {
     "configuration": {
@@ -20,10 +25,21 @@
         "cssVariableHint.lookupFiles": {
           "type": "array",
           "description": "Glob for css files which contain css variables",
-          "default": []
+          "default": [
+            "{,!(node_modules)/**/}*.css",
+            "{,!(node_modules)/**/}*.sass",
+            "{,!(node_modules)/**/}*.scss",
+            "{,!(node_modules)/**/}*.less"
+          ]
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "css-variable-hint.restartServer",
+        "title": "CSS Variable Hint: Restart Server"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

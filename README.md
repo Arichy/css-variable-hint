@@ -1,71 +1,36 @@
 # css-variable-hint README
 
-This is the README for your extension "css-variable-hint". After writing up a brief description, we recommend including the following sections.
-
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Add some css variables language features for `.css`, `.scss` files:
 
-For example if there is an image subfolder under your extension project workspace:
+- CSS variable completion
+- CSS variable goto definition
 
-\!\[feature X\]\(images/feature-x.png\)
+## Advantages compared with other similar extensions:
+- **Support multiple variables**: It's very common that we need to declare one css variable with multiple values. For example, to support `dark mode`, we often declare a color variable in `html`, and declare the same color variable in `html[data-theme=dark]` with another value. This extension will display all values for every variable to let you choose freely.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- **Source tree display**: One variable may have multiple values, so this extension will display every value with its source to let you recognize which one is what you need.
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Hot-reload**: File changes outside `node_modules` can be watched to update the completion items.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `cssVariableHint.lookupFiles`
+  - `description`: Files to look for all css variables
+  - `defaultValue`:
+
+```json
+[
+  "{,!(node_modules)/**/}*.css",
+  "{,!(node_modules)/**/}*.sass",
+  "{,!(node_modules)/**/}*.scss",
+  "{,!(node_modules)/**/}*.less"
+]
+```
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+File changes in `node_modules` cannot be watched because of vscode's default `files.watcherExclude` setting, so if you changed css variables in `node_modules`, you need to run the command `CSS Variable Hint: Restart Server` in vscode.
