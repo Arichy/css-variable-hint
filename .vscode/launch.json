@@ -10,8 +10,9 @@
       "type": "extensionHost",
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-      "outFiles": ["${workspaceFolder}/out/client/*.js"],
-      "preLaunchTask": "${defaultBuildTask}"
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "preLaunchTask": "${defaultBuildTask}",
+      "autoAttachChildProcesses": true
     },
     {
       "type": "node",
@@ -31,12 +32,6 @@
       ],
       "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
       "preLaunchTask": "${defaultBuildTask}"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "client + server",
-      "configurations": ["attach to server", "Run Extension"]
     }
   ]
 }
