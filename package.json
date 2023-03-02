@@ -1,8 +1,8 @@
 {
   "name": "css-variable-hint",
   "displayName": "css-variable-hint",
-  "description": "Completion and goto definition for css variables.",
-  "version": "1.1.2",
+  "description": "A vscode extension for css variable language features.",
+  "version": "1.2.1",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -13,6 +13,7 @@
     "onStartupFinished"
   ],
   "icon": "resources/logo.png",
+  "license": "MIT",
   "publisher": "arichy",
   "repository": {
     "url": "https://github.com/Arichy/css-variable-hint"
@@ -25,7 +26,12 @@
         "cssVariableHint.lookupFiles": {
           "type": "array",
           "description": "Glob for css files which contain css variables",
-          "default": []
+          "default": [
+            "{,!(node_modules)/}**/*.css",
+            "{,!(node_modules)/}**/*.sass",
+            "{,!(node_modules)/}**/*.scss",
+            "{,!(node_modules)/}**/*.less"
+          ]
         }
       }
     },

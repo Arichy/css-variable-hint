@@ -26,9 +26,19 @@ Add some css variables language features for `.css`, `.scss` files:
 This extension contributes the following settings:
 
 - `cssVariableHint.lookupFiles`
-  - `description`: Files to look for all css variables. Support `.css`, `.scss`, `.less` files.
-  - `defaultValue`: `[]`
+
+  - `description`: Files to look for all css variables (glob patterns)
+  - `defaultValue`:
+
+    ```json
+    [
+      "{,!(node_modules)/}**/*.css",
+      "{,!(node_modules)/}**/*.sass",
+      "{,!(node_modules)/}**/*.scss",
+      "{,!(node_modules)/}**/*.less"
+    ]
+    ```
 
 ## Known Issues
 
-File changes in `node_modules` cannot be watched because of vscode's default `files.watcherExclude` setting, so if you changed css variables in `node_modules`, you need to run the command `CSS Variable Hint: Restart Server` in vscode.
+File changes in `node_modules` cannot be watched because of vscode's default `files.watcherExclude` setting. So if you changed css variables in `node_modules`, you need to run the command `CSS Variable Hint: Restart Server` manually in vscode.

@@ -34,6 +34,20 @@ function createClient(
     },
   };
 
+  const watchers = watchedFiles.map((glob) => {
+    const pattern = new vscode.RelativePattern(
+      vscode.workspace.workspaceFolders[0].uri,
+      glob
+    );
+
+    return vscode.workspace.createFileSystemWatcher(
+      pattern,
+      false,
+      false,
+      false
+    );
+  });
+
   const clientOptions: LanguageClientOptions = {
     documentSelector: [
       {
@@ -46,19 +60,16 @@ function createClient(
       },
     ],
     synchronize: {
-      fileEvents: watchedFiles.map((glob) => {
-        return vscode.workspace.createFileSystemWatcher(
-          new vscode.RelativePattern(
-            vscode.workspace.workspaceFolders[0].uri,
-            glob
-          ),
-          false,
-          false,
-          false
-        );
-      }),
+      fileEvents: watchers,
     },
   };
+
+  // to test watchers
+  // watchers.forEach((watcher) => {
+  //   watcher.onDidChange((uri) => {
+  //     console.log('change', uri);
+  //   });
+  // });
 
   client = new LanguageClient(
     'css-variable-hint',
