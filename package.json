@@ -2,7 +2,7 @@
   "name": "css-variable-hint",
   "displayName": "css-variable-hint",
   "description": "A vscode extension for css variable language features.",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "engines": {
     "vscode": "^1.70.0"
   },
